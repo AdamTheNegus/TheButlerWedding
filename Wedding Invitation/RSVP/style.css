@@ -1,0 +1,245 @@
+body {
+	font-family: Helvetica, sans-serif;
+	background-color: #CCE0FD;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	padding: 12px; 
+	background-image: url('../cafeluna.jpg');
+ 	background-repeat: no-repeat;
+  	background-position: center center; /* Centers the image */
+  	background-attachment: fixed;       /* Keeps the image fixed during scroll */
+  	background-size: cover;             /* Scales the image to cover the entire container */
+  	margin: 0;                          /* Removes default body margin */
+  	padding: 0;   
+}
+
+h1 {
+	font-family: Times New Roman;
+}
+
+h2 {
+	color: #333;
+}
+
+#addOne {
+	width: 44px;
+	padding: 0;
+	font-size: 18px;
+}
+
+
+@media (max-width: 480px) {
+	#addOne {
+		width: 100%;
+	}
+}
+
+.container {
+ 	max-width: 420px;
+	width: 100%;
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	box-sizing: border-box;
+}
+
+input {
+	width: 100%;
+	max-width: 100%;
+	padding: 10px;
+	margin: 0;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+	outline: none;
+	box-sizing: border-box;
+}
+
+input, button {
+	min-height: 44px;
+	font-size: 16px;
+}
+
+input:focus {
+	border-color: royalblue;
+	box-shadow: 0 0 0 2px rgba(65, 105, 225, 0.2);
+}
+
+button:active {
+	transform: scale(0.97);
+}
+
+button {
+	background: #75A5EB;
+	color: white;
+	padding: 10px 15px;
+	width: 100%;
+	/*margin-top: 6px;*/
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+button:hover {
+	background: white;
+	color: #75A5EB ;
+} 
+
+button:disabled {
+	cursor: not-allowed;
+}
+
+.input-grid {
+	display: flex;
+	gap: 8px;
+	margin: 6px;
+	align-items: center;
+}
+
+.input-grid input {
+	width: 100%;
+	border: 2px solid #ddd;
+	border-radius: 5px;
+	font-size: 16px;
+	box-sizing: border-box;
+}
+
+.input-grid button {
+	width: 44px;
+	padding: 0;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.input-grid > div {
+  width: 44px; /* same width as +1 button */
+  flex-shrink: 0;
+}
+
+.plus-one {
+	display: flex;
+	gap: 10px;
+	margin: 6px;
+	align-items: center;
+}
+
+.plus-one:first-child {
+	margin-top: 20px;
+}
+
+.plus-one input {
+	flex: 1;
+	min-height: 44px;
+	padding: 10px;	
+}
+
+.plus-one .remove-btn {
+  width: 36px;
+  height: 44px;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.remove-btn {
+	background: #75A5EB;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 0 10px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+.remove-btn:hover {
+	/*background: #5187D7;*/
+	background: white;
+	color: #75A5EB ;
+}
+
+.error-msg {
+	color: #d9534f;
+	font-size: 14px;
+	margin-top: 6px;
+	min-height: 18px;
+	text-align: left;
+}
+
+.input-error {
+	border-color: #d9534f !important;
+}
+
+.success {
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.success p {
+  margin: 12px 0 20px;
+  font-size: 16px;
+}
+
+.home-link {
+  display: inline-block;
+  padding: 12px 20px;
+  background: royalblue;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.home-link:hover {
+  background: #2f5fd3;
+}
+
+.hidden {
+  display: none;
+}
+
+
+@keyframes shake {
+	0% { transform: translateX(0); }
+	25% { transform: translateX(-5px); }
+	50% { transform: translateX(5px); }
+	75% { transform: translateX(-5px); }
+	100% { transform: translateX(0); }
+}
+
+.shake {
+	animation: shake 0.3s;
+}
+
+.input-grid input,
+.plus-one input {
+	min-height: 44px;
+	box-sizing: border-box;
+}
+
+.input-grid button,
+.plus-one .remove-btn {
+	min-height: 44px;
+}
+
+
+@media (max-width: 480px) {
+	.input-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.input-grid button {
+		width: 100%;
+	}
+}
+
+@media (max-width: 480px) {
+	.plus-one {
+		grid-template-columns: 1fr;
+	}
+}
