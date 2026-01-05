@@ -123,7 +123,7 @@ function sendIn(){
 		document.querySelectorAll(".plus-one input")
 	).map(input => input.value.trim()).filter(Boolean);
 
-	fetch("https://script.google.com/macros/s/AKfycbxOOg_X3YWbSUdCNwDuaEsQsnZaqvmiZLf2o4jA-GQERwcEMB6kiSRtvVYoxLQPliEotA/exec", {
+	fetch("https://script.google.com/macros/s/AKfycbwek12ju7zR_kIpbjbGCz_NfsMpFyyowdPDFadsJX-6kYN8vDOpzzBDaU4UWP5RZWAD6A/exec", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -153,6 +153,7 @@ function showSuccess() {
   document.getElementById("form").classList.add("hidden");
   document.getElementById("successMessage").classList.remove("hidden");
 }
+
 
 
 
