@@ -1,152 +1,117 @@
 document.getElementById("letsGo").addEventListener("click", (e) => {
-	e.preventDefault();
+  e.preventDefault();
   sendIn();
 });
-// document.getElementById("addOne").addEventListener("click", addNew);
 
 const errorMsg = document.getElementById("errorMsg");
-
-
-
-function showError(message, inputs = []) {
-	errorMsg.textContent = message;
-
-	inputs.forEach(input => {
-		input.classList.add("input-error", "shake");
-
-		// Remove shake so it can trigger again later
-		setTimeout(() => input.classList.remove("shake"), 300);
-	});
-	errorMsg.scrollIntoView({ behavior: "smooth", block: "center" });
-
-}
-
-
-
-function clearErrors() {
-	errorMsg.textContent = "";
-	document.querySelectorAll(".input-error").forEach(el => {
-		el.classList.remove("input-error");
-	});
-}
-
-
-
 const MAX_PLUS_ONES = 2;
-
 const addOneBtn = document.getElementById("addOne");
 const plusOneContainer = document.getElementById("plusOne");
 
 addOneBtn.addEventListener("click", addPlusOne);
 
+function showError(message, inputs = []) {
+  errorMsg.textContent = message;
+  inputs.forEach(input => {
+    input.classList.add("input-error", "shake");
+    setTimeout(() => input.classList.remove("shake"), 300);
+  });
+  errorMsg.scrollIntoView({ behavior: "smooth", block: "center" });
+}
 
-
+function clearErrors() {
+  errorMsg.textContent = "";
+  document.querySelectorAll(".input-error").forEach(el => {
+    el.classList.remove("input-error");
+  });
+}
 
 function addPlusOne() {
-	clearErrors();
+  clearErrors();
 
-	const nameInput = document.getElementById("name");
-	const emailInput = document.getElementById("email");
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
 
-	const name = nameInput.value.trim();
-	const email = emailInput.value.trim();
+  if (!nameInput.value.trim() || !emailInput.value.trim()) {
+    showError("Please enter both name and email before adding a plus one.", [nameInput, emailInput]);
+    return;
+  }
 
-	if (name === "" || email === "") {
-		showError(
-			"Please enter both name and email before adding a plus one.",
-			[nameInput, emailInput]
-		);
-		return;
-	}
+  if (plusOneContainer.children.length >= MAX_PLUS_ONES) return;
 
-	const currentCount = plusOneContainer.children.length;
+  const wrapper = document.createElement("div");
+  wrapper.className = "plus-one";
 
-	if (currentCount >= MAX_PLUS_ONES) return;
+  const input = document.createElement("input");
+  input.type = "text";
+  input.placeholder = "Plus one name";
 
-	const wrapper = document.createElement("div");
-	wrapper.className = "plus-one";
+  const removeBtn = document.createElement("button");
+  removeBtn.type = "button";
+  removeBtn.textContent = "✕";
+  removeBtn.className = "remove-btn";
+  removeBtn.addEventListener("click", () => {
+    wrapper.remove();
+    updateAddButton();
+  });
 
-	const input = document.createElement("input");
-	input.type = "text";
-	input.placeholder = "Plus one name";
+  wrapper.appendChild(input);
+  wrapper.appendChild(removeBtn);
+  plusOneContainer.appendChild(wrapper);
 
-	const removeBtn = document.createElement("button");
-	removeBtn.type = "button";
-	removeBtn.textContent = "✕";
-	removeBtn.className = "remove-btn";
-
-	removeBtn.addEventListener("click", () => {
-		wrapper.remove();
-		updateAddButton();
-
-	});
-
-	wrapper.appendChild(input);
-	wrapper.appendChild(removeBtn);
-	plusOneContainer.appendChild(wrapper);
-
-	updateAddButton();
+  updateAddButton();
 }
-
-
-
 
 function updateAddButton() {
-	if (plusOneContainer.children.length >= MAX_PLUS_ONES) {
-		addOneBtn.disabled = true;
-		addOneBtn.style.opacity = "0.5";
-	} else {
-		addOneBtn.disabled = false;
-		addOneBtn.style.opacity = "1";
-	}
+  if (plusOneContainer.children.length >= MAX_PLUS_ONES) {
+    addOneBtn.disabled = true;
+    addOneBtn.style.opacity = "0.5";
+  } else {
+    addOneBtn.disabled = false;
+    addOneBtn.style.opacity = "1";
+  }
 }
 
-function sendIn(){
-	clearErrors();
+function sendIn() {
+  clearErrors();
 
-	const nameInput = document.getElementById("name");
-	const emailInput = document.getElementById("email");
-	
-	const name = document.getElementById("name").value.trim();
-	const email = document.getElementById("email").value.trim();
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
 
-		if (name === "" || email === "") {
-		showError(
-			"Please enter both name and email.",
-			[nameInput, emailInput]
-		);
-		return;
-	}
+  const name = nameInput.value.trim();
+  const email = emailInput.value.trim();
 
-// collect plus ones
-	const plusOnes = Array.from(
-		document.querySelectorAll(".plus-one input")
-	).map(input => input.value.trim()).filter(Boolean);
+  if (!name || !email) {
+    showError("Please enter both name and email.", [nameInput, emailInput]);
+    return;
+  }
 
-	fetch("https://script.google.com/macros/s/AKfycbwek12ju7zR_kIpbjbGCz_NfsMpFyyowdPDFadsJX-6kYN8vDOpzzBDaU4UWP5RZWAD6A/exec", {
-		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			name,
-			email,
-			plusOnes
-		})
-	})
-	.then(res => res.text())
-	.then(() => {
-		showSuccess();
+  const plusOnes = Array.from(document.querySelectorAll(".plus-one input"))
+    .map(input => input.value.trim())
+    .filter(Boolean);
 
-		// reset form
-		nameInput.value = "";
-		emailInput.value = "";
-		document.getElementById("plusOne").innerHTML = "";
-		updateAddButton();
-	})
-	.catch(() => {
-		showError("Something went wrong. Please try again.");
-	});
+  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", { // replace with your script URL
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ name, email, plusOnes })
+  })
+  .then(res => res.json()) // expect JSON from Apps Script
+  .then(result => {
+    if (result.status === "success") {
+      showSuccess();
+      nameInput.value = "";
+      emailInput.value = "";
+      plusOneContainer.innerHTML = "";
+      updateAddButton();
+    } else {
+      showError(result.message || "Something went wrong. Please try again.");
+    }
+  })
+  .catch(() => {
+    showError("Something went wrong. Please try again.");
+  });
 }
 
 function showSuccess() {
