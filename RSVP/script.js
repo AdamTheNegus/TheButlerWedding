@@ -90,7 +90,7 @@ function sendIn() {
     .map(input => input.value.trim())
     .filter(Boolean);
 
-  fetch("https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec", { // replace with your script URL
+  fetch("https://script.google.com/macros/s/AKfycbxdndPgDx3vd6LgII3Ec6n2IeieOUymOrrtEF7NRcIVfEbzKSEb6Zv-uCKUZXerRE_ftg/exec", { // replace with your script URL
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -118,6 +118,7 @@ function showSuccess() {
   document.getElementById("form").classList.add("hidden");
   document.getElementById("successMessage").classList.remove("hidden");
 }
+
 
 
 
