@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(input => input.value.trim())
       .filter(Boolean);
 
-    fetch("https://script.google.com/macros/s/AKfycbyVEjOj7-rj28G3M7CY0hioKcziwkZ_AGZOBjqkzw_UgyF0hYW7K29opHEYyfC4XSaDsQ/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbz2ME72entG3pt-tPxgsl_nTX-_VRQ87ohMRogR933sUJSpUko-zTKQp3SoY7i_EHgysw/exec", {
       method: "POST",
       mode: "no-cors",
       body: JSON.stringify({
@@ -151,3 +151,4 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
