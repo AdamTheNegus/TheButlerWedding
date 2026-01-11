@@ -137,7 +137,7 @@ function sendIn() {
 .catch(() => {
   showError("Something went wrong. Please try again.");
 });
-
+}
 
 // =====================
 // Success screen
@@ -146,9 +146,3 @@ function showSuccess() {
   document.getElementById("form").classList.add("hidden");
   document.getElementById("successMessage").classList.remove("hidden");
 }
-
-
-
-
-
-
