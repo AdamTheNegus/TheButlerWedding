@@ -120,7 +120,8 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(input => input.value.trim())
       .filter(Boolean);
 
-    fetch("https://script.google.com/macros/s/AKfycbz2ME72entG3pt-tPxgsl_nTX-_VRQ87ohMRogR933sUJSpUko-zTKQp3SoY7i_EHgysw/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbz2ME72entG3pt-tPxgsl_nTX-_VRQ87ohMRogR933sUJSpUko-zTKQp3SoY7i_EHgysw/exec
+", {
       method: "POST",
       mode: "no-cors",
       body: JSON.stringify({
@@ -130,12 +131,14 @@ document.addEventListener("DOMContentLoaded", () => {
       })
     })
     .then(() => {
-      showSuccess();
-
+      // Reset the form
       nameInput.value = "";
       emailInput.value = "";
       plusOneContainer.innerHTML = "";
       updateAddButton();
+
+      // Show success message with name, email, and plus ones
+      showSuccess(name, email, plusOnes);
     })
     .catch(() => {
       showError("Something went wrong. Please try again.");
@@ -145,10 +148,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================
   // Success screen
   // =====================
-  function showSuccess() {
-    document.getElementById("form").classList.add("hidden");
-    document.getElementById("successMessage").classList.remove("hidden");
+  function showSuccess(name, email, plusOnes) {
+    const formDiv = document.getElementById("form");
+    const successDiv = document.getElementById("successMessage");
+
+    formDiv.classList.add("hidden");
+    successDiv.classList.remove("hidden");
+
+    let plusOnesText = "";
+    if (plusOnes && plusOnes.length > 0) {
+      plusOnesText = `<p>Your plus ones: <strong>${plusOnes.join(", ")}</strong></p>`;
+    }
+
+    successDiv.innerHTML = `
+      <h2>Thank you${name ? ", " + name : ""}!</h2>
+      <p>Your RSVP has been received. ${
+        email ? `A confirmation email has been sent to <strong>${email}</strong>.` : ""
+      }</p>
+      ${plusOnesText}
+      <a href="../index.html" class="home-link">Return to home page</a>
+    `;
   }
 
 });
-
