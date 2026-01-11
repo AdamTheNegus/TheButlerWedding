@@ -1,21 +1,32 @@
+// =====================
+// Button handlers
+// =====================
 document.getElementById("letsGo").addEventListener("click", (e) => {
   e.preventDefault();
   sendIn();
 });
 
-const errorMsg = document.getElementById("errorMsg");
-const MAX_PLUS_ONES = 2;
 const addOneBtn = document.getElementById("addOne");
-const plusOneContainer = document.getElementById("plusOne");
-
 addOneBtn.addEventListener("click", addPlusOne);
 
+// =====================
+// Constants & elements
+// =====================
+const errorMsg = document.getElementById("errorMsg");
+const plusOneContainer = document.getElementById("plusOne");
+const MAX_PLUS_ONES = 2;
+
+// =====================
+// Error handling
+// =====================
 function showError(message, inputs = []) {
   errorMsg.textContent = message;
+
   inputs.forEach(input => {
     input.classList.add("input-error", "shake");
     setTimeout(() => input.classList.remove("shake"), 300);
   });
+
   errorMsg.scrollIntoView({ behavior: "smooth", block: "center" });
 }
 
@@ -26,6 +37,9 @@ function clearErrors() {
   });
 }
 
+// =====================
+// Plus-one logic
+// =====================
 function addPlusOne() {
   clearErrors();
 
@@ -33,7 +47,10 @@ function addPlusOne() {
   const emailInput = document.getElementById("email");
 
   if (!nameInput.value.trim() || !emailInput.value.trim()) {
-    showError("Please enter both name and email before adding a plus one.", [nameInput, emailInput]);
+    showError(
+      "Please enter both name and email before adding a plus one.",
+      [nameInput, emailInput]
+    );
     return;
   }
 
@@ -50,6 +67,7 @@ function addPlusOne() {
   removeBtn.type = "button";
   removeBtn.textContent = "✕";
   removeBtn.className = "remove-btn";
+
   removeBtn.addEventListener("click", () => {
     wrapper.remove();
     updateAddButton();
@@ -72,6 +90,9 @@ function updateAddButton() {
   }
 }
 
+// =====================
+// Submit RSVP
+// =====================
 function sendIn() {
   clearErrors();
 
@@ -82,31 +103,40 @@ function sendIn() {
   const email = emailInput.value.trim();
 
   if (!name || !email) {
-    showError("Please enter both name and email.", [nameInput, emailInput]);
+    showError(
+      "Please enter both name and email.",
+      [nameInput, emailInput]
+    );
     return;
   }
 
-  const plusOnes = Array.from(document.querySelectorAll(".plus-one input"))
+  const plusOnes = Array.from(
+    document.querySelectorAll(".plus-one input")
+  )
     .map(input => input.value.trim())
     .filter(Boolean);
 
-  fetch("https://script.google.com/macros/s/AKfycbxdndPgDx3vd6LgII3Ec6n2IeieOUymOrrtEF7NRcIVfEbzKSEb6Zv-uCKUZXerRE_ftg/exec", { // replace with your script URL
+  fetch("https://script.google.com/macros/s/AKfycbxNicXfiXL9xhuATFdAiUXPbezwKjDEPGMt_BsSUtQHtHsg3P0ytzC60cd6iXu5brjDyw/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({ name, email, plusOnes })
+    body: JSON.stringify({
+      name,
+      email,
+      plusOnes
+    })
   })
-  .then(res => res.json()) // expect JSON from Apps Script
-  .then(result => {
-    if (result.status === "success") {
+  .then(res => res.json())
+  .then(data => {
+    if (data.status === "success") {
       showSuccess();
       nameInput.value = "";
       emailInput.value = "";
       plusOneContainer.innerHTML = "";
       updateAddButton();
     } else {
-      showError(result.message || "Something went wrong. Please try again.");
+      showError(data.message || "Something went wrong. Please try again.");
     }
   })
   .catch(() => {
@@ -114,11 +144,13 @@ function sendIn() {
   });
 }
 
+// =====================
+// Success screen
+// =====================
 function showSuccess() {
   document.getElementById("form").classList.add("hidden");
   document.getElementById("successMessage").classList.remove("hidden");
 }
-
 
 
 
