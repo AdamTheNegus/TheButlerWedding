@@ -116,33 +116,31 @@ function sendIn() {
     .map(input => input.value.trim())
     .filter(Boolean);
 
-  fetch("https://script.google.com/macros/s/AKfycbxNicXfiXL9xhuATFdAiUXPbezwKjDEPGMt_BsSUtQHtHsg3P0ytzC60cd6iXu5brjDyw/exec", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      name,
-      email,
-      plusOnes
-    })
+  fetch("https://script.google.com/macros/s/AKfycbyVEjOj7-rj28G3M7CY0hioKcziwkZ_AGZOBjqkzw_UgyF0hYW7K29opHEYyfC4XSaDsQ/exec", {
+  method: "POST",
+  mode: "no-cors",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name,
+    email,
+    plusOnes
   })
-  .then(res => res.json())
-  .then(data => {
-    if (data.status === "success") {
-      showSuccess();
-      nameInput.value = "";
-      emailInput.value = "";
-      plusOneContainer.innerHTML = "";
-      updateAddButton();
-    } else {
-      showError(data.message || "Something went wrong. Please try again.");
-    }
-  })
-  .catch(() => {
-    showError("Something went wrong. Please try again.");
-  });
-}
+})
+.then(() => {
+  // Assume success if no network error
+  showSuccess();
+
+  nameInput.value = "";
+  emailInput.value = "";
+  plusOneContainer.innerHTML = "";
+  updateAddButton();
+})
+.catch(() => {
+  showError("Something went wrong. Please try again.");
+});
+
 
 // =====================
 // Success screen
@@ -151,6 +149,7 @@ function showSuccess() {
   document.getElementById("form").classList.add("hidden");
   document.getElementById("successMessage").classList.remove("hidden");
 }
+
 
 
 
