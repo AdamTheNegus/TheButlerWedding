@@ -119,9 +119,6 @@ function sendIn() {
   fetch("https://script.google.com/macros/s/AKfycbyVEjOj7-rj28G3M7CY0hioKcziwkZ_AGZOBjqkzw_UgyF0hYW7K29opHEYyfC4XSaDsQ/exec", {
   method: "POST",
   mode: "no-cors",
-  headers: {
-    "Content-Type": "application/json"
-  },
   body: JSON.stringify({
     name,
     email,
@@ -149,6 +146,7 @@ function showSuccess() {
   document.getElementById("form").classList.add("hidden");
   document.getElementById("successMessage").classList.remove("hidden");
 }
+
 
 
 
