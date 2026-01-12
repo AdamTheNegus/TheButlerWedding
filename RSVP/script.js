@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .map(input => input.value.trim())
       .filter(Boolean);
 
-    fetch("https://script.google.com/macros/s/AKfycbz2ME72entG3pt-tPxgsl_nTX-_VRQ87ohMRogR933sUJSpUko-zTKQp3SoY7i_EHgysw/exec", {
+    fetch("https://script.google.com/macros/s/AKfycbz2ME72entG3pt-tPxgsl_nTX-_VRQ87ohMRogR933sUJSpUko-zTKQp3SoY7i_EHgysw/exec", { // <-- Replace with your Apps Script deployment URL
       method: "POST",
       mode: "no-cors",
       body: JSON.stringify({
@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
       plusOneContainer.innerHTML = "";
       updateAddButton();
 
-      // Show success message with name, email, and plus ones
+      // Show polished success message
       showSuccess(name, email, plusOnes);
     })
     .catch(() => {
@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // =====================
-  // Success screen
+  // Polished Success Screen
   // =====================
   function showSuccess(name, email, plusOnes) {
     const formDiv = document.getElementById("form");
@@ -154,21 +154,25 @@ document.addEventListener("DOMContentLoaded", () => {
     formDiv.classList.add("hidden");
     successDiv.classList.remove("hidden");
 
-    let plusOnesText = "";
+    // Prepare plus-ones HTML
+    let plusOnesHTML = "";
     if (plusOnes && plusOnes.length > 0) {
-      plusOnesText = `<p>Your plus ones: <strong>${plusOnes.join(", ")}</strong></p>`;
+      plusOnesHTML = `
+        <p><strong>Plus ones:</strong></p>
+        <ul>${plusOnes.map(p => `<li>${p}</li>`).join("")}</ul>
+      `;
     }
 
+    // Build polished HTML
     successDiv.innerHTML = `
-      <h2>Thank you${name ? ", " + name : ""}!</h2>
-      <p>Your RSVP has been received. ${
-        email ? `A confirmation email has been sent to <strong>${email}</strong>.` : ""
-      }</p>
-      ${plusOnesText}
-      <a href="../index.html" class="home-link">Return to home page</a>
+      <div style="font-family: 'Arial', sans-serif; color: #333; max-width: 600px; margin: 0 auto; text-align: center;">
+        <h1 style="color: #4CAF50;">Thank You${name ? ", " + name : ""}!</h1>
+        <p>Your RSVP has been received.</p>
+        <p>A confirmation email has been sent to <strong>${email}</strong>.</p>
+        ${plusOnesHTML}
+        <a href="../index.html" style="display:inline-block; margin-top: 20px; text-decoration:none; color:#fff; background-color:#4CAF50; padding:10px 20px; border-radius:5px;">Return to home page</a>
+      </div>
     `;
   }
 
 });
-
-
