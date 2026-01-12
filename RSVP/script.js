@@ -155,13 +155,22 @@ document.addEventListener("DOMContentLoaded", () => {
     successDiv.classList.remove("hidden");
 
     // Prepare plus-ones HTML
-    let plusOnesHTML = "";
-    if (plusOnes && plusOnes.length > 0) {
-      plusOnesHTML = `
-        <p><strong>Plus ones:</strong></p>
-        <ul>${plusOnes.map(p => `<li>${p}</li>`).join("")}</ul>
-      `;
-    }
+ 
+let plusOnesHTML = "";
+if (plusOnes && plusOnes.length > 0) {
+  plusOnesHTML = `
+    <p><strong>Plus ones:</strong></p>
+    <ul style="
+      list-style: none;        /* removes bullets */
+      padding: 0;              /* removes default left padding */
+      margin: 0 auto;          /* centers the list */
+      display: inline-block;   /* allows margin auto to center */
+      text-align: center;      /* centers text inside list items */
+    ">
+      ${plusOnes.map(p => `<li>${p}</li>`).join("")}
+    </ul>
+  `;
+}
 
     // Build polished HTML
     successDiv.innerHTML = `
@@ -176,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+
 
 
 
