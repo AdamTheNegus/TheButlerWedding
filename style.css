@@ -1,137 +1,366 @@
-h1 {
-	font-family: "Lucida Handwriting";
-	text-align: center;
+/* =========================
+   GLOBAL STYLES
+========================= */
+
+* {
+  box-sizing: border-box;
 }
 
-h3, h4, h5, p, li {
-	font-family: "Georgia";
-	margin-top: 20px;
-	margin-left: 40px;
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background-color: #A3CAFF;
+  color: #222;
+}
 
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+a {
+  color: #2f5fd3;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   TOP
+========================= */
+
+.top {
+  text-align: center;
+  padding: 80px 20px 40px;
+}
+
+.top h1 {
+  font-family: "Lucida Handwriting", cursive;
+  margin: 10px 0;
+}
+
+/* =========================
+   INTRO / THANK YOU
+========================= */
+
+.intro {
+  padding-top: 20px;
 }
 
 #teAgredecemos {
-	display: grid;
-	place-items: center;
-	max-width: 900px;
-	width: 50vw;
-	margin: 0 auto;
-	background: white;
-	padding: 20px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-	text-align: center;
-	box-sizing: border-box;
+  max-width: 900px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 #teAgredecemos p {
-	font-family: serif;
-	max-width: 80%;
+  margin: 12px auto;
+  max-width: 700px;
+  font-size: 16px;
+}
+
+/* =========================
+   CAROUSEL
+========================= */
+
+.myswiper {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 0;
+  perspective: 1000px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.9s ease;
+  transform-style: preserve-3d; /* 3D stacking */
+}
+
+.swiper-slide img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transition: transform 0.9s ease;
+  opacity: 0.5;
+  transform: scale(0.8);
+}
+
+.swiper-slide-active img {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 2;
+}
+
+.swiper-slide-next img,
+.swiper-slide-prev img {
+  transform: scale(0.8) translateZ(-50px);
+  opacity: 0.7;
+  /*filter: blur(0.2px);*/
+  z-index: 1;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+}
+
+/* =========================
+   VENUE SECTION
+========================= */
+
+.venue {
+  background-color: #f0f3f8;
+  border-radius: 12px;
 }
 
 #page {
-	display: grid;
-	grid-template-columns: 2fr 3fr 3fr; /* content / photo */
-	column-gap: 10px;
-	max-width: 100%;
-	margin: 0 20px auto;
-	align-items: flex-start;
-	/*justify-content: flex-end;*/
-	padding: 20px;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 2fr;
+  gap: 20px;
+  align-items: center;
 }
+
+/* Speech bubble */
 
 .speechBubble {
-	display: flex;
-	justify-content: flex-start;
-/*	justify-content: flex-end;
-	align-items: center;*/
+  display: flex;
+  justify-content: center;
 }
 
-.reservaciones {
-	font-family: "Georgia";
-}
-
-.ropa {
-	font-family: "Georgia";
-}
-
-.hotel {
-	font-family: "Georgia";
-	margin-left: 20px;
-}
-
-/*/* The actual bubble */
-/*.bubble {
-  background: #fff;
+.bubble {
+  background: white;
   border-radius: 15px;
-  padding: 15px 20px;
+  padding: 20px 25px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.15);
   position: relative;
-  max-width: 90%; /* prevent bubble from being too wide */
-/*}*/
+  max-width: 100%;
+}
 
-/* Optional "pointer" triangle */
-/*.bubble::after {
+.bubble h3,
+.bubble h4 {
+  margin: 6px 0;
+}
+
+/* Optional bubble pointer */
+.bubble::after {
   content: '';
   position: absolute;
   top: 50%;
-  right: -15px; /* points to the photo */
-	transform: translateY (-50%);
+  right: -15px;
+  transform: translateY(-50%);
   border-width: 10px;
   border-style: solid;
-  border-color: transparent transparent transparent #fff;
+  border-color: transparent transparent transparent white;
 }
 
-/* Remove default heading margins inside bubble */
+/* Venue images */
 
-.bubble h3, .bubble h4 {
-  margin: 5px 0;
-}
-
-.position {
-	display: flex;
-	justify-content: flex-end;
-}
-
-.right-photo {
-	width: 65vw;
-	max-width: 100%;
-	height: auto;
-	border-radius: 10px;
-	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
+.position,
 .placement {
-	display: flex;
-	justify-content: flex-end;
+  display: flex;
+  justify-content: center;
+}
+
+.right-photo,
+.next-photo {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
 
 .next-photo {
-	width: 65vw;
-	max-width: 100%;
-	height: 405px;
-	border-radius: 10px;
-	box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  max-height: 400px;
+  object-fit: cover;
 }
 
+/* =========================
+   DRESS CODE
+========================= */
+.columns {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;              /* 👈 this spaces the columns */
+  text-align: center;
+  align-items: stretch;
+  margin-top: 30px;
+}
+
+.columns > div {
+  background: #ffffff;
+  padding: 25px 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.columns li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.columns ul {
+  margin-top: 10px;
+}
+
+/*.yes h5::before {
+  content: "✔ ";
+  color: #2f7d6d;
+  font-weight: bold;
+}
+*/
+.avoid h5::before {
+  content: "✖ ";
+  color: #b23a3a;
+  font-weight: bold;
+}
+
+/*.styleGuide h5::before {
+  content: "👗 ";
+}*/
+
+.reservaciones h5 {
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+
+.reservaciones ul {
+  margin-top: 10px;
+}
+
+.dress-code {
+  text-align: center;
+}
+
+.reservaciones {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.reservaciones h3 {
+  margin-bottom: 20px;
+}
+
+.reservaciones h5 {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.reservaciones p {
+  margin: 10px 0;
+}
+
+.reservaciones ul {
+  list-style: none;
+  padding: 0;
+}
+
+.reservaciones li {
+  margin: 6px 0;
+}
+
+/* =========================
+   HOTELS / STAY
+========================= */
+.stay {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 40px;
+  background-color: #f9fafc;
+  border-radius: 12px;
+  padding: 20px;
+  align-items: start;
+  min-height: 400px;
+}
+
+.hotel {
+  text-align: left;
+  z-index: 1;
+}
+
+.hotel h2 {
+  margin-bottom: 20px;
+}
+
+.hotel p {
+  margin: 8px 0;
+}
+
+.map-wrapper {
+	display: block; /* make it fill the grid column fully */
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Make iframe responsive */
+.map-wrapper iframe {
+  max-width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 18px;
+}
+	
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 768px) {
-	#page {
-		grid-template-columns: 1fr; /* stack content and photo */
-	}
 
-	.speechBubble {
-		justify-content: center;
-	}
+  section {
+    padding: 40px 15px;
+  }
 
-	/*.bubble::after {
-		display: none;
-	}*/
-	.position {
-		justify-content: center;
-		margin-top: 20px;
-	}
+  #page {
+    grid-template-columns: 1fr;
+  }
 
-	.right-photo , .next-photo {
-		width: 100%;
-		/*max-width: 300px; /* prevent it from getting too big */*/
-	}
+  .bubble::after {
+    display: none;
+  }
+
+  .right-photo,
+  .next-photo {
+    max-width: 100%;
+  }
+
+  .top {
+    padding-top: 60px;
+  }
+
+  .columns {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .stay {
+    grid-template-columns: 1fr;  /* single column */
+    gap: 20px;
+  }
+
+  .map-wrapper {
+    justify-content: center;     /* map centered on mobile */
+    margin-right: 0;
+    width: 100%;
+  }
 }
