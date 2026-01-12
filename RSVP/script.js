@@ -166,15 +166,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Build polished HTML
     successDiv.innerHTML = `
       <div style="font-family: 'Arial', sans-serif; color: #333; max-width: 600px; margin: 0 auto; text-align: center;">
-        <h1 style="color: 03337A;">Thank You${name ? ", " + name : ""}!</h1>
+        <h1 style="color: #75A5EB;">Thank You${name ? ", " + name : ""}!</h1>
         <p>Your RSVP has been received.</p>
         <p>A confirmation email has been sent to <strong>${email}</strong>.</p>
         ${plusOnesHTML}
-        <a href="../index.html" style="display:inline-block; margin-top: 20px; text-decoration:none; color:#fff; background-color:#4CAF50; padding:10px 20px; border-radius:5px;">Return to home page</a>
+        <a href="../index.html" style="display:inline-block; margin-top: 20px; text-decoration:none; color:#fff; background-color:#75A5EB; padding:10px 20px; border-radius:5px;">Return to home page</a>
       </div>
     `;
   }
 
 });
+
 
 
