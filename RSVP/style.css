@@ -232,19 +232,11 @@ button:disabled {
 		order: 2;
 		margin-top:8px;
 	}
-	
-	/* #addOne { */
-    /* order: 2;           /* move +1 button below email */ */
-    /* width: 100%; */
-    /* margin-top: 8px;    /* spacing */ */
-  /* } */
-
   	#name {
-    order: 0;           /* keep Name input first */
+    	order: 0;         
   }
-
   	#email {
-    order: 1;           /* email second */
+    	order: 1;          
   }
 	.plus-one {
 		flex-direction: column;
@@ -256,6 +248,7 @@ button:disabled {
 		width:100%;
 	}
 }
+
 
 
 
