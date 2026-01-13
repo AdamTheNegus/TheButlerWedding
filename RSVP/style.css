@@ -30,13 +30,6 @@ h2 {
 	font-size: 18px;
 }
 
-
-@media (max-width: 480px) {
-	#addOne {
-		width: 100%;
-	}
-}
-
 .container {
  	max-width: 420px;
 	width: 100%;
@@ -230,7 +223,7 @@ button:disabled {
 }
 
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
 	.input-grid {
 		flex-direction: column;
 		align-items: stretch;
@@ -240,9 +233,16 @@ button:disabled {
 		width: 100%;
 	}
 	.plus-one {
-		grid-template-columns: 1fr;
+		flex-direction:column;
+		align-items: stretch;
+		gap: 6px;
+	}
+	.plus-one input,
+	.plus-one .remove-btn {
+		width:100%;
 	}
 	#addOne {
 		width: 100%;
 }
+
 
