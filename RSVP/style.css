@@ -242,9 +242,11 @@ button:disabled {
 		order: 2;
 	}
 	.plus-one {
-		flex-direction: column;
+		/* flex-direction: column; */
 		align-items: stretch;
 		gap: 6px;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 	.plus-one input{
 		width: 100%;
@@ -254,6 +256,7 @@ button:disabled {
 		margin-top: 0;
 	}
 }
+
 
 
 
