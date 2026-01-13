@@ -222,19 +222,6 @@ button:disabled {
 	min-height: 44px;
 }
 
-@media (min-width: 769px) {
-  .name-row,
-  .add-one-row {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  #addOne {
-    width: 44px;
-  }
-}
-
 @media (max-width: 768px) {
 	.input-grid {
 		flex-direction: column;
@@ -243,13 +230,19 @@ button:disabled {
 	.input-grid button {
 		width: 100%;
 	}
-	.name-row,
-  	.add-one-row,
-  	.email-row {
-    	display: flex;
-    	flex-direction: column;
-    	gap: 6px;
-  	}
+	#addOne {
+    order: 2;           /* move +1 button below email */
+    width: 100%;
+    margin-top: 8px;    /* spacing */
+  }
+
+  	#name {
+    order: 0;           /* keep Name input first */
+  }
+
+  	#email {
+    order: 1;           /* email second */
+  }
 	.plus-one {
 		flex-direction: column;
 		align-items: stretch;
@@ -259,10 +252,8 @@ button:disabled {
 	.plus-one .remove-btn {
 		width:100%;
 	}
-	#addOne {
-		width: 100%;
-	}
 }
+
 
 
 
