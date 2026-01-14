@@ -8,7 +8,7 @@
 
 body {
   margin: 0;
-  font-family: "Alex Brush", cursive;
+  font-family: "Lucida Handwriting", cursive;
   font-size: 150%;
   background-color: #A3CAFF;
   color: #222;
@@ -40,7 +40,7 @@ a:hover {
 }
 
 .top h1 {
-  font-family: "Lucida Handwriting", cursive;
+  font-family: "Alex Brush", cursive;
   margin: 10px 0;
 }
 
@@ -377,5 +377,6 @@ a:hover {
     min-height: 360px; /* safety floor */
   }
 }
+
 
 
