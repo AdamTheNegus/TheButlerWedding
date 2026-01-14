@@ -39,8 +39,9 @@ a:hover {
 }
 
 .top h1 {
-  font-family: "Alex Brush", cursive;
-  margin: 10px 0;
+	font-family: "Alex Brush", cursive;
+	font-size: 150%;
+	margin: 10px 0;
 }
 
 /* =========================
@@ -376,6 +377,7 @@ a:hover {
     min-height: 360px; /* safety floor */
   }
 }
+
 
 
 
