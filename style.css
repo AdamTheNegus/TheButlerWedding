@@ -9,7 +9,6 @@
 body {
   margin: 0;
   font-family: "Lucida Handwriting", cursive;
-  font-size: 150%;
   background-color: #A3CAFF;
   color: #222;
 }
@@ -377,6 +376,7 @@ a:hover {
     min-height: 360px; /* safety floor */
   }
 }
+
 
 
 
